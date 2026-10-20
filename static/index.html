@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Deforestation Driver Classification - Sentinel-1 & 2</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌲 AI Deforestation Driver Monitoring</h1>
+            <p>Klasifikasi Pemicu Deforestasi Berdasarkan Citra Satelit Radar (Sentinel-1) & Optik (Sentinel-2)</p>
+            <span class="badge">Sesi 6 - Wageningen University & Research</span>
+        </header>
+
+        <main>
+            <section class="card">
+                <h2>1. Pilih Alert / Skenario Citra Satelit</h2>
+                <div class="controls">
+                    <label for="scenarioSelect">Skenario Gangguan Tutupan Hutan:</label>
+                    <select id="scenarioSelect">
+                        <option value="mining">Pertambangan Emas / Mineral (Mining)</option>
+                        <option value="large_agri">Pertanian Skala Besar / Perkebunan</option>
+                        <option value="small_agri">Pertanian Skala Kecil (Ladang)</option>
+                        <option value="road">Pembukaan Jalan Baru (Roads)</option>
+                        <option value="fire">Bekas Kebakaran Hutan (Fire)</option>
+                        <option value="flood">Genangan Air / Banjir (Natural)</option>
+                    </select>
+                    <button id="btnAnalyze">Analisis dengan Model CNN</button>
+                </div>
+            </section>
+
+            <section class="card result-section" id="resultCard" style="display:none;">
+                <h2>2. Hasil Inferensi Model CNN</h2>
+                <div class="summary-box">
+                    <div class="summary-item">
+                        <span class="label">Pemicu Utama Terdeteksi:</span>
+                        <span class="value" id="predictedDriver">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Tingkat Keyakinan (Confidence):</span>
+                        <span class="value highlight" id="confidenceVal">-</span>
+                    </div>
+                </div>
+
+                <h3>Distribusi Probabilitas Klasifikasi:</h3>
+                <div class="chart-container">
+                    <canvas id="probChart"></canvas>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
